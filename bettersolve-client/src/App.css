@@ -1,4 +1,45 @@
-.app {
-    display: flex;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+body {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-size: 16px;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+    
     justify-content: center;
+    background-color: #2B233B;
+    height: 100vh;
 }
+button{
+    font-family: 'Montserrat';
+    font-style: normal;
+    width: 320px;
+    height: 46px;
+    border-radius: 10px;
+    border: 0;
+    background-color: #6B31B5;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    position: center;
+    text-transform: capitalize;
+    text-align: center;
+    color: #FFFFFF;
+
+    cursor: pointer;
+    transition: 500ms;
+}
+button>p{
+    margin: 0;
+}
+button:hover{
+    background-color: #a592be;
+    transition: 500ms;
+}
+

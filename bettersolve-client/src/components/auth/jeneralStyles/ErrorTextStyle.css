@@ -1,0 +1,13 @@
+.errortext {
+    top: 36.33%;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.06em;
+    color: #F10A0A;
+    
+}
+
+input:not(:focus):not(:placeholder-shown):invalid {
+border: 2px solid #F10A0A;
+border-radius: 10px;
+}
