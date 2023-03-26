@@ -1,9 +1,9 @@
 import React from 'react';
 import "./App.css";
-import Home from "./components/home";
+import Home from "./components/home/HomePage";
 import {Route, Routes} from "react-router-dom";
-import AuthRootComponent from "./components/auth";
-import Header from "./components/Header/Header";
+import AuthRootComponent from "./components/authorization/Routes";
+import Header from "./components/header/Header";
 
 function App() {
   return (

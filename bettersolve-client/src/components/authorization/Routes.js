@@ -1,8 +1,8 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
-import LoginPage from "./login/login";
-import RegisterPage from "./register/registration";
-import "./Style.css";
+import LoginPage from "./login/Login";
+import RegisterPage from "./register/Registration";
+import "./Form.css";
 import {Box} from "@mui/material";
 
 const AuthRootComponent = () => {

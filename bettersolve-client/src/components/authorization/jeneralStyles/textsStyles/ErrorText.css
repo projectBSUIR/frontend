@@ -1,4 +1,4 @@
-.errortext {
+.errorText {
     top: 36.33%;
     font-weight: 500;
     line-height: 20px;
@@ -10,4 +10,12 @@
 input:not(:focus):not(:placeholder-shown):invalid {
 border: 2px solid #F10A0A;
 border-radius: 10px;
+}
+
+span{
+    display: none;
+}
+
+input:invalid ~ span{
+display: block;
 }

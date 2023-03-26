@@ -1,7 +1,7 @@
 import React from "react";
-import "./headForm.css";
-import style from "./nameStyle.module.css";
-import navigateStyle from "./navigate.module.css";
+import "./HeadForm.css";
+import style from "./styles/Name.module.css";
+import navigateStyle from "./styles/Navigate.module.css";
 import { NavLink } from 'react-router-dom';
 
 const Header = () => {
