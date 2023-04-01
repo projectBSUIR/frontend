@@ -1,0 +1,14 @@
+.mainForm{
+    justify-content: left;
+    display: flex;
+    flex-flow: row wrap;
+    left: 0%;
+    right: 0%;
+    top: -5.05%;
+    background: #FFFFFF;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+    padding-bottom: 5%;
+    padding-left: 5%;
+}
