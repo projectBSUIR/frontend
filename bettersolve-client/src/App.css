@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 body {
     width: 90%;
     margin-left: auto;
@@ -28,7 +28,6 @@ button{
     font-size: 18px;
     line-height: 22px;
     position: center;
-    text-transform: capitalize;
     text-align: center;
     color: #FFFFFF;
 
@@ -43,3 +42,17 @@ button:hover{
     transition: 500ms;
 }
 
+.mainForm {
+    justify-content: left;
+    display: flex;
+    flex-flow: row wrap;
+    left: 0%;
+    right: 0%;
+    top: -5.05%;
+    background: #FFFFFF;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+    padding-bottom: 5%;
+    padding-left: 5%;
+}

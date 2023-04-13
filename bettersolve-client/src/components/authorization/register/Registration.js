@@ -63,7 +63,7 @@ const RegisterPage = () => {
 
     return (
         <div>
-            <form>
+            <form className='authform'>
                 <h1 className={title.registerTitle}>  
                     Регестрируйся
                 </h1>

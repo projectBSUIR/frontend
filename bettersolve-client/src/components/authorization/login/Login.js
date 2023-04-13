@@ -43,7 +43,7 @@ const LoginPage = () => {
 
     return (
         <div> 
-            <form>
+            <form className='authform'>
                 <h1 className={title.loginTitle}>
                     Вход
                 </h1>

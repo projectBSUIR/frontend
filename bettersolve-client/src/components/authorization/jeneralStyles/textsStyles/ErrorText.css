@@ -12,7 +12,7 @@ border: 2px solid #F10A0A;
 border-radius: 10px;
 }
 
-span{
+.authform span{
     display: none;
 }
 
