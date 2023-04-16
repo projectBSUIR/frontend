@@ -1,0 +1,11 @@
+.lightButton{
+    background: #FFFFFF;
+    border: 1px solid #6B31B5;
+    border-radius: 5px;
+    Width: auto;
+    Height: 30px;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.05em;
+    color: #6B31B5;
+}

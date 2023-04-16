@@ -9,6 +9,7 @@ import Task from "./components/contests/tasks/taskPage/TaskPage";
 import TaskList from './components/contests/tasks/taskList/TaskList';
 import Submissions from './components/contests/solutions/Solutions';
 import Standings from './components/contests/standings/Standings'
+import TrainersPage from './components/trainers/TrainersPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path = "/contests/1/problem/submissions" element = {<Submissions/>}/>
             <Route path = "/enter" element = {<AuthRootComponent/>}/>
             <Route path = "/register" element = {<AuthRootComponent/>}/>
+            <Route path="/edu" element = {<TrainersPage/>}/>
         </Routes>
     </div>
   );
