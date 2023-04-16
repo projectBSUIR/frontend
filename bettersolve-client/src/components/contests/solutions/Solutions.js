@@ -33,7 +33,7 @@ solutions.forEach((solution) => {
         <td>{solution.solutionStatus}</td>
     </tr>);
   });
-const Standing = () =>{
+const Submissions = () =>{
     return (
         <div  className={styles.MainPage}>
             <div className={styles.Content}>
@@ -56,4 +56,4 @@ const Standing = () =>{
     )
 }
 
-export default Standing
+export default Submissions

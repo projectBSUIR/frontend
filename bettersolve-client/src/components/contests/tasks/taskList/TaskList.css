@@ -20,22 +20,25 @@
 .taskHeader{
     font-size: 22px;
     font-weight: 500;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
-
+.contestHeader{
+    width: 400px;
+}
 .taskNameList{
+    display: flex;
+    justify-content: space-between;
     font-weight: 500;
     font-size: 18px;
     padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 .mysollution{
-    
-    margin-left: 630px;
+    width: auto;
     background: #FFFFFF;
     border: 1px solid #6B31B5;
     border-radius: 5px;
-    Width: 125px;
     Height: 30px;
     font-size: 16px;
     line-height: 20px;
