@@ -63,7 +63,7 @@ const LoginPage = () => {
                 </button>
 
                 <label className="label"> Еще нет аккаунта?⠀
-                    <NavLink to = "/register" className="alignText"> Зарегестрироваться</NavLink>   
+                    <NavLink to = "/register" className="alignText"> Зарегистрироваться</NavLink>   
                 </label>
             </form>
         </div>
