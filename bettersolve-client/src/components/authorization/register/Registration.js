@@ -63,9 +63,9 @@ const RegisterPage = () => {
 
     return (
         <div>
-            <form>
+            <form className='authform'>
                 <h1 className={title.registerTitle}>  
-                    Регестрируйся
+                    Регистрируйся
                 </h1>
 
                 <p className={paragraph.subtitle}>И участвуй в различных контестах</p>
@@ -79,7 +79,7 @@ const RegisterPage = () => {
                     />
                 ))}
                 <button className="margins" type='submit' variant="contained">
-                    <p className="button">Зарегестрироваться </p>
+                    <p className="button">Зарегистрироваться </p>
                 </button>
 
                 <label className="label"> Уже есть аккаунт?⠀

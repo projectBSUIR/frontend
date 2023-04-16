@@ -43,7 +43,7 @@ const LoginPage = () => {
 
     return (
         <div> 
-            <form>
+            <form className='authform'>
                 <h1 className={title.loginTitle}>
                     Вход
                 </h1>
@@ -63,7 +63,7 @@ const LoginPage = () => {
                 </button>
 
                 <label className="label"> Еще нет аккаунта?⠀
-                    <NavLink to = "/register" className="alignText"> Зарегестрироваться</NavLink>   
+                    <NavLink to = "/register" className="alignText"> Зарегистрироваться</NavLink>   
                 </label>
             </form>
         </div>

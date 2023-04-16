@@ -32,6 +32,7 @@ const Header = () => {
             <div className={navigateStyle.authLinks}>
             <NavLink to = "/register" className = { navData => navData.isActive ? navigateStyle.active : ''} >  Регистрация </NavLink>
             </div>
+            
         </div>
     </header>)
 }
