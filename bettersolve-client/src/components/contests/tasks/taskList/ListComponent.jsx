@@ -6,7 +6,7 @@ const ListComponent = (props) => {
   let navigate = useNavigate(); 
 
   const routeChange = () =>{ 
-    let path = `/contests/1/problem/solution/1`; 
+    let path = `/contests/1/problem/submissions`; 
     navigate(path);
   }
     return(

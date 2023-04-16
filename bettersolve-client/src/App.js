@@ -7,8 +7,8 @@ import Header from "./components/header/Header";
 import Contests from "./components/contests/contestsPage/ContestsPage";
 import Task from "./components/contests/tasks/taskPage/TaskPage";
 import TaskList from './components/contests/tasks/taskList/TaskList';
-import Standing from './components/contests/standing/Standing';
-import TaskResult from './components/contests/worldTaskResult/WorldTaskResult'
+import Submissions from './components/contests/solutions/Solutions';
+import Standings from './components/contests/standings/Standings'
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
             <Route path = "/contests" element = {<Contests/>}/>
             <Route path = "/contests/1/problem" element = {<TaskList/>}/>
             <Route path = "/contests/1/problem/1" element = {<Task/>}/>
-            <Route path ="/contests/1/problem/Results" element={<TaskResult/>}/>
-            <Route path = "/contests/1/problem/solution/1" element = {<Standing/>}/>
+            <Route path ="/contests/1/problem/standings" element={<Standings/>}/>
+            <Route path = "/contests/1/problem/submissions" element = {<Submissions/>}/>
             <Route path = "/enter" element = {<AuthRootComponent/>}/>
             <Route path = "/register" element = {<AuthRootComponent/>}/>
         </Routes>

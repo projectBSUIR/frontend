@@ -9,7 +9,7 @@ const TaskList = () => {
     let navigate = useNavigate(); 
 
     const routeChange = () =>{ 
-        let path = `/contests/1/problem/Results`; 
+        let path = `/contests/1/problem/standings`; 
         navigate(path);
   }
     return(

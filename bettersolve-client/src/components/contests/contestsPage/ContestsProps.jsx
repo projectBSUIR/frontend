@@ -1,8 +1,8 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
-import "./Date.css"
-import "./FieldForm.css";
-import name from "./ContestsName.module.css"
+import "./styles//Date.css"
+import "./styles/FieldForm.css";
+import name from "./styles/ContestsName.module.css"
 
 const ContestsComponent = (props) => {
   let navigate = useNavigate(); 
