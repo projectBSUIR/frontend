@@ -70,7 +70,7 @@ const LoginPage = () => {
                     />
                 ))}
 
-                <button className="margins" type='submit' variant="contained">
+                <button onClick={sendLoginRequest} className="margins" type='submit' variant="contained">
                 <p className="button"> Войти </p>
                 </button>
 
