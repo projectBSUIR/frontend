@@ -1,6 +1,6 @@
 import React from "react";
 import styles from '../TaskResultStyles.module.css';
-import tableStyles from './worldResult.module.css';
+import tableStyles from './Standings.module.css';
 const people = [
     {
         num:1,
@@ -11,7 +11,10 @@ const people = [
         B: '+3',
         C: '+',
         D: '+',
-        E: '-'
+        E: '-',
+        F: '+3',
+        G: '+',
+        H: '+',
     },
     {
         num:2,
@@ -22,7 +25,10 @@ const people = [
         B: '-2',
         C: '+4',
         D: '+',
-        E: '+'
+        E: '+',
+        F: '+3',
+        G: '+',
+        H: '+',
     }
 ]
 var elements = []
@@ -34,11 +40,14 @@ people.forEach((person)=>
         <td>{person.userName}</td>       
         <td>{person.score}</td>
         <td>{person.penalty}</td>
-        <td>{person.A}</td>
-        <td>{person.B}</td>
-        <td>{person.C}</td>
-        <td>{person.D}</td>
-        <td>{person.E}</td>
+        <td className={styles.Letter}>{person.A}</td>
+        <td className={styles.Letter}>{person.B}</td>
+        <td className={styles.Letter}>{person.C}</td>
+        <td className={styles.Letter}>{person.D}</td>
+        <td className={styles.Letter}>{person.E}</td>
+        <td className={styles.Letter}>{person.F}</td>
+        <td className={styles.Letter}>{person.G}</td>
+        <td className={styles.Letter}>{person.H}</td>
     </tr>);
 });
 const Standings = () =>{
@@ -49,7 +58,7 @@ return (
                 <span>Результаты:</span>
                 <input placeholder="Поиск" className={styles.SearchInput}/>
             </div>
-            <table className={styles.tableSettings + " " + tableStyles.worldResTable}>
+            <table className={styles.tableSettings + " " + tableStyles.worldResTable + "" + tableStyles.tasks}>
                 <tr>
                     <td>№</td>
                     <td>Имя пользователя</td>
@@ -60,6 +69,9 @@ return (
                     <td>C</td>
                     <td>D</td>
                     <td>E</td>
+                    <td>F</td>
+                    <td>G</td>
+                    <td>H</td>
                 </tr>
                 {elements}
             </table>

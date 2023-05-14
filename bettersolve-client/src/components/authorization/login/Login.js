@@ -54,13 +54,12 @@ const LoginPage = () => {
         }
     }
 
-        return (
+    return (
         <div> 
             <form className='authform'>
                 <h1 className={title.loginTitle}>
                     Вход
                 </h1>
-
                 {inputs.map((input) => (
                     <FormInput 
                         className="field" 
@@ -71,7 +70,7 @@ const LoginPage = () => {
                     />
                 ))}
 
-                <button onClick={sendLoginRequest} className="margins" type='submit' variant="contained">
+                <button className="margins" type='submit' variant="contained">
                 <p className="button"> Войти </p>
                 </button>
 

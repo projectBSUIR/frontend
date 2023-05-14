@@ -10,7 +10,9 @@
     border: 1px solid #2B233B;
     border-radius: 5px;
 }
-
+.createContestWidth{
+width: 95%;
+}
 .info{
     background: #FFFFFF;
     border: 3px solid #2C243C;
