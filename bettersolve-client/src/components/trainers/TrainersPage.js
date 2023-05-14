@@ -67,9 +67,9 @@ const TrainersPage = () => {
                   />
                 </label>
                 <label>
-                  Дата окончания:
+                  Длительность:
                   <input className="field" 
-                    type="date"
+                    type="time"
                     name="duration"
                     value={contestData.duration}
                     onChange={handleInputChange}
