@@ -41,13 +41,16 @@ const LoginPage = () => {
         setValues({...values, [e.target.name]:e.target.value});
     }
 
+    const SomeFunc = () => {
+        fetch("http://localhost:5000/enter")
+        .then((response)=> console.log(response));
+    }
     return (
         <div> 
             <form className='authform'>
                 <h1 className={title.loginTitle}>
                     Вход
                 </h1>
-
                 {inputs.map((input) => (
                     <FormInput 
                         className="field" 
@@ -58,7 +61,7 @@ const LoginPage = () => {
                     />
                 ))}
 
-                <button className="margins" type='submit' variant="contained">
+                <button className="margins" variant="contained" onClick={SomeFunc}>
                 <p className="button"> Войти </p>
                 </button>
 
