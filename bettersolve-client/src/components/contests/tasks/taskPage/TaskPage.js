@@ -2,13 +2,14 @@ import React from "react";
 import Menu from "../menu/MainMenu";
 import "../Grid.css";
 import CodeInput from "./CodeTextArea"
+import 'katex/dist/katex.min.css';
 import { NavLink } from "react-router-dom";
-var Latex = require('react-latex');
+
+
 
 const Task = () => {
     return(
         <div className = "app-wrapper">
-            
             <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
             <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script> 
             <link rel="stylesheet" type="text/css" href="/static/js/codemirror-5.62.0/lib/codemirror.css"></link>
@@ -21,11 +22,6 @@ const Task = () => {
             <p className="limits"> Лимит времени: 1000 мс <br/> 
                 Лимит памяти: 256 мб
             </p>
-            <Latex>Однажды Дима задал девочке Маше сложный вопрос: есть ли у неё парень или нет. Так как у неё не было однозначного ответа(а может она и не хотела отвечать), то ответ был "без комментариев". Но так как Диму это сильно заинтересовало, он попросил её ответить на этот вопрос однозначно как можно раньше.
-            Дима не знает, что Маше нравятся парни определенного характера. Маша определяет характер парня с номером x как мультимножество цифр, из которых это число состоит. Если у неё есть выбор из двух или более парней, то выбирает парня с меньшим номером.
-            Незадолго до того, как Дима задал Маше вопрос, ей нравился парень с номером n. Так как у Маши есть огромный выбор и она хочет постоянно развиваться, то хочет завести парня с номером большим, чем её бывший парень с номером n. Так как выбор между парнями очень большой, то Маша просит Вас написать программу, которая однозначно определит номер m её будущего парня, или выведет, что такого не будет.
-            </Latex>
-            
             <p className="line"/>
             <p className="headline">Входные данные</p>
             <p>В первой строке входных данных записано число</p>

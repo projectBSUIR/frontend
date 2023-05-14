@@ -10,6 +10,7 @@ import TaskList from './components/contests/tasks/taskList/TaskList';
 import Submissions from './components/contests/solutions/Solutions';
 import Standings from './components/contests/standings/Standings'
 import TrainersPage from './components/trainers/TrainersPage';
+import AdminPage from './components/admin/AdminPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path = "/enter" element = {<AuthRootComponent/>}/>
             <Route path = "/register" element = {<AuthRootComponent/>}/>
             <Route path="/edu" element = {<TrainersPage/>}/>
+            <Route path="/admin" element = {<AdminPage/>}/>
         </Routes>
     </div>
   );
