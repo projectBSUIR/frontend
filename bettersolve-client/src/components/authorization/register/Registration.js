@@ -7,23 +7,26 @@ import '../jeneralStyles/textsStyles/AlignText.css';
 import FormInput from '../FormInput.jsx';
 import paragraph from  './SubtitleStyle.module.css';
 import { NavLink } from 'react-router-dom';
+import RegisterService from '../../../API/RegisterService';
 
 const RegisterPage = () => {
     const [values, setValues] = useState({
-        nickname: '',
-        email: '',
+        login: '',
         password: '',
+        email: '',
+    })
+
+    const [value, setValue] = useState({
         repeatPassword: ''
     })
 
     const inputs = [
         {
-            id:'nickname',
+            id:'login',
             type: 'text',
-            name: 'nickname',
+            name: 'login',
             placeholder:'Введите имя пользователя',
             errorMessage: 'Данное поле должно быть заполнено',
-            pattern:'[a-zA-Z]+',
             minLength:'4',
             required: true
         },
@@ -33,7 +36,6 @@ const RegisterPage = () => {
             name: 'email',
             placeholder:'Введите ваш e-mail адрес',
             errorMessage: 'Данное поле должно быть заполнено',
-            pattern:'/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i+',
             minLength:'4',
             required: true
         },
@@ -59,6 +61,22 @@ const RegisterPage = () => {
 
     const onChange = (e) => {
         setValues({...values, [e.target.name]:e.target.value});
+        setValue({...value, [e.target.name]:e.target.value});
+    }
+
+    async function sendRegisterRequest(e){
+        e.preventDefault()
+        if(values.login && values.password && values.email){
+            await RegisterService.register(values)
+            if(localStorage.getItem('ACCESS'))
+            {
+                window.location.href = "http://localhost:3000/contests"
+            }
+            else
+            {
+                alert("Ошибка. Проверьте корректность введенных данных и повторите попытку")
+            }
+        }
     }
 
     return (
@@ -74,11 +92,13 @@ const RegisterPage = () => {
                         className="field" 
                         key = {input.id} 
                         {...input} 
-                        value = {values[input.name]}
+                        value1 = {values[input.name]}
+                        value2 = {value[input.name]}
                         onChange = {onChange}
+                        
                     />
                 ))}
-                <button className="margins" type='submit' variant="contained">
+                <button onClick={sendRegisterRequest} className="margins" type='submit' variant="contained">
                     <p className="button">Зарегистрироваться </p>
                 </button>
 

@@ -6,23 +6,21 @@ import '../jeneralStyles/textsStyles/Label.css';
 import '../jeneralStyles/textsStyles/AlignText.css';
 import { NavLink } from 'react-router-dom';
 import FormInput from '../FormInput.jsx';
+import LoginService from '../../../API/LoginService';
 
 const LoginPage = () => {
     const [values, setValues] = useState({
-        nickname: '',
-        email: '',
-        password: '',
-        repeatPassword: ''
+        login: '',
+        password: ''
     })
 
     const inputs = [
         {
-            id:'nickname',
+            id:'login',
             type: 'text',
-            name: 'nickname',
+            name: 'login',
             placeholder:'Введите имя пользователя',
             errorMessage: 'Данное поле должно быть заполнено',
-            pattern:'[a-zA-Z]+',
             minLength:'4',
             required: true
         },
@@ -40,8 +38,23 @@ const LoginPage = () => {
     const onChange = (e) => {
         setValues({...values, [e.target.name]:e.target.value});
     }
+    
+    async function sendLoginRequest(e){
+        e.preventDefault()
+        if(values.login && values.password){
+            await LoginService.login(values)
+            if(localStorage.getItem('ACCESS'))
+            {
+                window.location.href = "http://localhost:3000/contests"
+            }
+            else
+            {
+                alert("Ошибка. Проверьте корректность введенных данных и повторите попытку")
+            }
+        }
+    }
 
-    return (
+        return (
         <div> 
             <form className='authform'>
                 <h1 className={title.loginTitle}>
@@ -58,12 +71,12 @@ const LoginPage = () => {
                     />
                 ))}
 
-                <button className="margins" type='submit' variant="contained">
+                <button onClick={sendLoginRequest} className="margins" type='submit' variant="contained">
                 <p className="button"> Войти </p>
                 </button>
 
                 <label className="label"> Еще нет аккаунта?⠀
-                    <NavLink to = "/register" className="alignText"> Зарегистрироваться</NavLink>   
+                    <NavLink to = "/enter" className="alignText"> Зарегистрироваться</NavLink>   
                 </label>
             </form>
         </div>

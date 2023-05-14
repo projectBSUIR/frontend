@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./components/home/HomePage";
 import {Route, Routes} from "react-router-dom";
 import AuthRootComponent from "./components/authorization/Routes";
-import Header from "./components/header/Header";
+import Header from "./components/Header/Header";
 import Contests from "./components/contests/contestsPage/ContestsPage";
 import Task from "./components/contests/tasks/taskPage/TaskPage";
 import TaskList from './components/contests/tasks/taskList/TaskList';
