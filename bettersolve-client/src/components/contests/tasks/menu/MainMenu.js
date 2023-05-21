@@ -18,7 +18,7 @@ const Menu = () => {
         <p className="status">Статус контеста</p>
         <p className="line" />
         <div className="navigation">
-          {problems.map((problem, index) => (
+          {problems && problems.map((problem, index) => (
             <div key={index}>
               <NavLink
                 to={`/contests/${id}/problem/${index + 1}`}
