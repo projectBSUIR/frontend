@@ -12,7 +12,7 @@ const TrainersPage = () => {
     start_time: "",
     duration: "",
   });
-  const [ownContests, setOwnContests] = useState([{id: 0, name: "12312"}]);
+  const [ownContests, setOwnContests] = useState();
   const [a, setA] = useState(false)
 
   const handleInputChange = (event) => {
@@ -44,13 +44,21 @@ const TrainersPage = () => {
     window.location.reload(true)
   }
 
+  function showOwnContests() {
+    if (!ownContests) {
+      window.location.href = "http://localhost:3000/";
+      return;
+    }
+    return ownContests.map(contest => 
+      <CreatedContests contestName={contest.name} contestId={contest.id}/>
+    )
+  }
+
   return (
     <div style={{ width: "100%" }}>
       <div className={"taskListForm"}>
         <h1 className="taskHeader"> Созданные соревнования: </h1>
-        {ownContests.map(contest => 
-          <CreatedContests contestName={contest.name} contestId={contest.id}/>
-        )}
+        {showOwnContests()}
         <button className="darkButton" onClick={handleModalOpen}>
           Создать контест
         </button>
