@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ContestsComponent from "./ContestsProps";
+import { useNavigate } from "react-router-dom";
 
 const Contests = () => {
   const [contests, setContests] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5000/contests")
@@ -16,6 +18,11 @@ const Contests = () => {
       });
   }, []);
 
+  const routeChange = (id) => {
+    let path = `/contests/${id}/problem`;
+    navigate(path);
+  };
+
   return (
     <div className="mainForm">
       {contests.map((contest) => (
@@ -23,6 +30,7 @@ const Contests = () => {
           key={contest.id}
           contest={contest.name}
           date={contest.start_time}
+          onClick={() => routeChange(contest.id)}
         />
       ))}
     </div>
