@@ -46,8 +46,7 @@ const TrainersPage = () => {
 
   function showOwnContests() {
     if (!ownContests) {
-      window.location.href = "http://localhost:3000/";
-      return;
+      return <></>;
     }
     return ownContests.map(contest => 
       <CreatedContests contestName={contest.name} contestId={contest.id}/>
