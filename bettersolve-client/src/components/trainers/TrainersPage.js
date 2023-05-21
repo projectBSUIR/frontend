@@ -24,6 +24,8 @@ const TrainersPage = () => {
   const handleModalClose = () => {
     setShowModal(false);
   };
+
+
   async function test(e){
     e.preventDefault()
     await SubmitContest.handleModalSubmit(contestData)
@@ -33,10 +35,10 @@ const TrainersPage = () => {
     <div style={{ width: "100%" }}>
       <div className={"taskListForm"}>
         <h1 className="taskHeader"> Созданные соревнования: </h1>
-        <CreatedContests contests="Название контеста" />
-        <CreatedContests contests={contestData.name} />
-        <CreatedContests contests="8 яблок" />
-        <CreatedContests contests="Мы делили апельсин" />
+        <CreatedContests contestName="Название контеста" />
+        <CreatedContests contestName={contestData.name} />
+        <CreatedContests contestName="8 яблок" />
+        <CreatedContests contestName="Мы делили апельсин" />
         <button className="darkButton" onClick={handleModalOpen}>
           Создать контест
         </button>

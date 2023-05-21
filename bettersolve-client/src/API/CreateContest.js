@@ -1,3 +1,6 @@
+import TokenController from "../controllers/TokenController";
+import { MakeAuthorizedRequest } from "./RequestService";
+
 export default class SubmitContest {
   static async handleModalSubmit(contestData) {
     const contestDataInt = {
@@ -6,7 +9,7 @@ export default class SubmitContest {
       start_time: new Date().toISOString()
     };
 
-    const token = localStorage.getItem('ACCESS');
+    const token = TokenController.getToken();
 
     const requestOptions = {
       method: 'POST',
@@ -19,9 +22,9 @@ export default class SubmitContest {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/createContest", requestOptions);
-      if (response.ok) {
-        const data = await response.json();
+      const response = await MakeAuthorizedRequest("http://localhost:5000/createContest", requestOptions, false);
+      if (response.status === 200) {
+        const data = response.data;
         console.log("Success:", data);
       } else {
         throw new Error("Request failed with status " + response.status);

@@ -35,7 +35,7 @@ const CreatedContests = (props) => {
   return (
     <div>
       <div className="taskNameList">
-        <span className="contestHeader">{props.contests}</span>
+        <span className="contestHeader">{props.contestName}</span>
         <button className="mysollution" onClick={() => setModalVisible(true)}>
           Добавить задачу
         </button>

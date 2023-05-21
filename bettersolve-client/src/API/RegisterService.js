@@ -1,4 +1,5 @@
-import axios from "axios";
+import {MakeRequest} from "./RequestService";
+import TokenController from "../controllers/TokenController";
 
 export default class RegisterService
 {
@@ -8,13 +9,21 @@ export default class RegisterService
         }
         let code = await getSHA256Hash(values.password)
         values.password = code;
-        await axios.post('http://localhost:5000/register', values, { withCredentials: true })
-        .then(response => {
-            console.log(response)
-            return response.data
-        }).then(data =>{
-            localStorage.setItem('ACCESS', data.access_token)
-        })
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+            credentials: 'include'
+          };
+
+        const response = await MakeRequest('http://localhost:5000/register', requestOptions);
+        if (response.status === 200) {
+            const data = response.data;
+            TokenController.setToken(data.access_token);
+        }
     }
 }
 const getSHA256Hash = async (input) => {
