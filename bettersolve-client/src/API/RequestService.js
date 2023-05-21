@@ -1,6 +1,8 @@
 import RefreshService from "./RefreshService";
 import TokenController from "../controllers/TokenController.js";
 
+const BASE_SERVER_URL = "http://localhost:5000/";
+
 const IsJSONstring = (str) => {
     try {
         const p = JSON.parse(str);
@@ -11,6 +13,9 @@ const IsJSONstring = (str) => {
 }
 
 export const MakeRequest = async (endpoint, requestOptions) => {
+    if (!endpoint.startsWith(BASE_SERVER_URL)) {
+        endpoint = BASE_SERVER_URL + endpoint
+    }
     let response = await fetch(endpoint, requestOptions);
     let data = await response.text();
     let responseData = {
@@ -34,7 +39,7 @@ export const MakeAuthorizedRequest = async (endpoint, requestOptions, refreshed)
             return await MakeAuthorizedRequest(endpoint, requestOptions, true);
         } else {
             if (response.status === 401) {
-                window.location.href = "http://localhost:3000/login";
+                window.location.href = "http://localhost:3000/enter";
             }
         }
         return response;

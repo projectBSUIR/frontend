@@ -22,7 +22,7 @@ export default class SubmitContest {
     };
 
     try {
-      const response = await MakeAuthorizedRequest("http://localhost:5000/createContest", requestOptions, false);
+      const response = await MakeAuthorizedRequest("createContest", requestOptions, false);
       if (response.status === 200) {
         const data = response.data;
         console.log("Success:", data);

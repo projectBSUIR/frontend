@@ -19,7 +19,7 @@ export default class RegisterService
             credentials: 'include'
           };
 
-        const response = await MakeRequest('http://localhost:5000/register', requestOptions);
+        const response = await MakeRequest('register', requestOptions);
         if (response.status === 200) {
             const data = response.data;
             TokenController.setToken(data.access_token);

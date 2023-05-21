@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreatedContests from "./CreatedContests";
 import "../contests/tasks/taskList/TaskList.css";
 import "./styles/ModalContest.css";
+import ContestService from "../../API/ContestService";
 import SubmitContest from "../../API/CreateContest";
 
 const TrainersPage = () => {
@@ -11,6 +12,8 @@ const TrainersPage = () => {
     start_time: "",
     duration: "",
   });
+  const [ownContests, setOwnContests] = useState([{id: 0, name: "12312"}]);
+  const [a, setA] = useState(0)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -25,6 +28,13 @@ const TrainersPage = () => {
     setShowModal(false);
   };
 
+  useEffect(() => {
+    async function fetchOwnContests() {
+      let contests = await ContestService.handleOwnContest();
+      setOwnContests(contests)
+    }
+    fetchOwnContests();
+  }, []);
 
   async function test(e){
     e.preventDefault()
@@ -35,10 +45,9 @@ const TrainersPage = () => {
     <div style={{ width: "100%" }}>
       <div className={"taskListForm"}>
         <h1 className="taskHeader"> Созданные соревнования: </h1>
-        <CreatedContests contestName="Название контеста" />
-        <CreatedContests contestName={contestData.name} />
-        <CreatedContests contestName="8 яблок" />
-        <CreatedContests contestName="Мы делили апельсин" />
+        {ownContests.map(contest => 
+          <CreatedContests contestName={contest.name}/>
+        )}
         <button className="darkButton" onClick={handleModalOpen}>
           Создать контест
         </button>

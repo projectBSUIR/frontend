@@ -15,7 +15,7 @@ export default class RefreshService
             credentials: 'include'
         };
 
-        let response = await MakeRequest('http://localhost:5000/refresh', requestOptions)
+        let response = await MakeRequest('refresh', requestOptions)
         return response;
     }
 }
