@@ -13,7 +13,7 @@ const Task = () => {
             <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
             <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script> 
             <link rel="stylesheet" type="text/css" href="/static/js/codemirror-5.62.0/lib/codemirror.css"></link>
-            <Menu message = "hi">
+            <Menu message = "hi" >
             linke = <NavLink to = "/contests/1/problem" className = { navData => navData.isActive ? "active" : ''}>   К задачам </NavLink>
             </Menu>
             <div  className="content"> 

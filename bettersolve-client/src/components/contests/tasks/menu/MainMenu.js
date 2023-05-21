@@ -1,32 +1,35 @@
 import React from "react";
-import "../Grid.css";
 import { NavLink } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
-const Menu = (props) => {
-    return(
-    <div className='menu'>
-            <div className="navigation + BackToTasks">
-                <div class="arrow"></div>
-                <NavLink to = "/contests" className = { navData => navData.isActive ? "active" : ''}>   К задачам </NavLink>
+const Menu = () => {
+    const location = useLocation();
+    const { contests } = location.state;
+    const { id } = useParams();
+    
+    return (
+      <div className='menu'>
+        <div className="navigation + BackToTasks">
+          <div className="arrow"></div>
+          <NavLink to="/contests" className={navData => navData.isActive ? "active" : ''}>   К задачам </NavLink>
+        </div>
+        <p className="headline">{contests[id-1]?.name}</p>
+        <p className="status">Статус контеста</p>
+        <p className="line" />
+        <div className="navigation">
+          {contests.map((contest, index) => (
+            <div key={index}>
+              <NavLink
+                to={`/contests/${id}/problem/${index + 1}`}
+                className={navData => navData.isActive ? "active" : ''}
+              >
+                {String.fromCharCode(65 + index)}. {contest.name}
+              </NavLink>
             </div>
-            <p className="headline">Название контеста</p>
-            <p className="status">Статус контеста</p>
-            <p className="line"/>
-            <div className="navigation">
-                <div>
-                <NavLink to = "/contests/1/problem/1" className = { navData => navData.isActive ? "active" : ''}>  А. Название задачи  </NavLink>
-                </div>
-                <br/>
-                <div>
-                <NavLink to = "/contests/1/problem/2" className = { navData => navData.isActive ? "active" : ''}>  B. Название задачи </NavLink>
-                </div>
-                <br/>
-                <div>
-                <NavLink to = "/contests/1/problem/3" className = { navData => navData.isActive ? "active" : ''}>  C. Название задачи </NavLink>
-                </div>
-                <br/>
-            </div>
-    </div>
-    )
+          ))}
+        </div>
+      </div>
+    );
 }
-export default Menu
+
+export default Menu;
