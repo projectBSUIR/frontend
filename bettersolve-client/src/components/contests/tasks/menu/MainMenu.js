@@ -5,6 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 const Menu = () => {
     const location = useLocation();
     const { contests } = location.state;
+    const { problems } = location.state;
     const { id } = useParams();
     
     return (
@@ -17,13 +18,13 @@ const Menu = () => {
         <p className="status">Статус контеста</p>
         <p className="line" />
         <div className="navigation">
-          {contests.map((contest, index) => (
+          {problems.map((problem, index) => (
             <div key={index}>
               <NavLink
                 to={`/contests/${id}/problem/${index + 1}`}
                 className={navData => navData.isActive ? "active" : ''}
               >
-                {String.fromCharCode(65 + index)}. {contest.name}
+                {String.fromCharCode(65 + index)}. {problem.name}
               </NavLink>
             </div>
           ))}

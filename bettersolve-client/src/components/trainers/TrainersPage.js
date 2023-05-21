@@ -24,8 +24,7 @@ const TrainersPage = () => {
   const handleModalClose = () => {
     setShowModal(false);
   };
-  async function test(e){
-    e.preventDefault()
+  async function test(){
     await SubmitContest.handleModalSubmit(contestData)
   }
 
