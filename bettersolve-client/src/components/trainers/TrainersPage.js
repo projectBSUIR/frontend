@@ -2,23 +2,19 @@ import React, { useState } from "react";
 import CreatedContests from "./CreatedContests";
 import "../contests/tasks/taskList/TaskList.css";
 import "./styles/ModalContest.css";
+import SubmitContest from "../../API/CreateContest";
 
 const TrainersPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [contestData, setContestData] = useState({
     name: "",
-    startDate: "",
+    start_time: "",
     duration: "",
   });
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setContestData({ ...contestData, [name]: value });
-  };
-
-  const handleModalSubmit = () => {
-    console.log(contestData);
-    setShowModal(false);
   };
 
   const handleModalOpen = () => {
@@ -28,13 +24,17 @@ const TrainersPage = () => {
   const handleModalClose = () => {
     setShowModal(false);
   };
+  async function test(e){
+    e.preventDefault()
+    await SubmitContest.handleModalSubmit(contestData)
+  }
 
   return (
     <div style={{ width: "100%" }}>
       <div className={"taskListForm"}>
         <h1 className="taskHeader"> Созданные соревнования: </h1>
         <CreatedContests contests="Название контеста" />
-        <CreatedContests contests="Лучший программист ИиТП" />
+        <CreatedContests contests={contestData.name} />
         <CreatedContests contests="8 яблок" />
         <CreatedContests contests="Мы делили апельсин" />
         <button className="darkButton" onClick={handleModalOpen}>
@@ -61,8 +61,8 @@ const TrainersPage = () => {
                   Дата начала:
                   <input className="field" 
                     type="date"
-                    name="startDate"
-                    value={contestData.startDate}
+                    name="start_time"
+                    value={contestData.start_time}
                     onChange={handleInputChange}
                   />
                 </label>
@@ -75,7 +75,7 @@ const TrainersPage = () => {
                     onChange={handleInputChange}
                   />
                 </label>
-                <button type="button" onClick={handleModalSubmit}>
+                <button type="button" onClick={test}>
                   Создать
                 </button>
               </form>

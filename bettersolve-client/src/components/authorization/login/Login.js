@@ -42,14 +42,29 @@ const LoginPage = () => {
     async function sendLoginRequest(e){
         e.preventDefault()
         if(values.login && values.password){
-            await LoginService.login(values)
-            if(localStorage.getItem('ACCESS'))
-            {
-                window.location.href = "http://localhost:3000/contests"
-            }
-            else
-            {
-                alert("Ошибка. Проверьте корректность введенных данных и повторите попытку")
+            try {
+                await LoginService.login(values)
+                if(localStorage.getItem('ACCESS'))
+                {
+                    window.location.href = "http://localhost:3000/contests"
+                }
+                else
+                {
+                    alert("Ошибка. Проверьте корректность введенных данных и повторите попытку")
+                }
+            } catch(error){
+                if (error.response && error.response.status === 401) {
+                    try {
+                      await LoginService.refreshAccessToken();
+                      await sendLoginRequest(e);
+                    } catch (error) {
+                      console.error(error);
+                      alert('Ошибка при обновлении токена доступа.');
+                    }
+                  } else {
+                    console.error(error);
+                    alert('Ошибка. ' + error.message);
+                }
             }
         }
     }
