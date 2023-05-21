@@ -13,7 +13,7 @@ const TrainersPage = () => {
     duration: "",
   });
   const [ownContests, setOwnContests] = useState([{id: 0, name: "12312"}]);
-  const [a, setA] = useState(0)
+  const [a, setA] = useState(false)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -33,12 +33,15 @@ const TrainersPage = () => {
       let contests = await ContestService.handleOwnContest();
       setOwnContests(contests)
     }
-    fetchOwnContests();
-  }, []);
+    if (a === true) {
+      fetchOwnContests();
+    }
+    setA(true)
+  }, [a]);
 
-  async function test(e){
-    e.preventDefault()
+  async function createContest(e){
     await SubmitContest.handleModalSubmit(contestData)
+    window.location.reload(true)
   }
 
   return (
@@ -86,7 +89,7 @@ const TrainersPage = () => {
                     onChange={handleInputChange}
                   />
                 </label>
-                <button type="button" onClick={test}>
+                <button type="button" onClick={createContest}>
                   Создать
                 </button>
               </form>

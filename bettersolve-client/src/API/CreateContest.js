@@ -3,9 +3,10 @@ import { MakeAuthorizedRequest } from "./RequestService";
 
 export default class SubmitContest {
   static async handleModalSubmit(contestData) {
+    const [hours, minutes] = contestData.duration.split(':')
     const contestDataInt = {
       ...contestData,
-      duration: parseInt(contestData.duration, 10),
+      duration: Number(hours) * 60 * 60 + Number(minutes) * 60,
       start_time: new Date().toISOString()
     };
 

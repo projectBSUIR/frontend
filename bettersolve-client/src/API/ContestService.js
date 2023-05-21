@@ -21,7 +21,7 @@ export default class ContestService
         let data = response.data;
         return data.contests;
       } else {
-        window.location.href = "http://localhost:3000/enter";
+        //window.location.href = "http://localhost:3000/enter";
         throw new Error("Request failed with status " + response.status);
       }
     } catch (error) {
