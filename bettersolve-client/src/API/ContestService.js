@@ -29,4 +29,26 @@ export default class ContestService
     }
     return null;
   }
+
+  static async addProblem(binaryProblem, contestId) {
+    const token = TokenController.getToken();
+
+    const data = new FormData();
+    data.append("Problem", binaryProblem)
+    data.append("Contest", JSON.stringify({contestId: contestId}))
+    let requestOptions = {
+      method: 'POST',
+      headers: {
+        'Authorization': token
+      },
+      body: data,
+      credentials: 'include'
+    };
+    let response = await MakeAuthorizedRequest("addProblem", requestOptions)
+    if (response.status === 200) {
+      console.log(response.data)
+    } else {
+      //window.location.href = "http://localhost:3000/enter";
+    }
+  }
 }

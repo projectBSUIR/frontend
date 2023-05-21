@@ -49,7 +49,7 @@ const TrainersPage = () => {
       <div className={"taskListForm"}>
         <h1 className="taskHeader"> Созданные соревнования: </h1>
         {ownContests.map(contest => 
-          <CreatedContests contestName={contest.name}/>
+          <CreatedContests contestName={contest.name} contestId={contest.id}/>
         )}
         <button className="darkButton" onClick={handleModalOpen}>
           Создать контест
