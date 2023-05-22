@@ -22,7 +22,7 @@ function App() {
             <Route path = "/contests/:id/problem" element = {<TaskList/>}/>
             <Route path = "/contests/:id/problem/1" element = {<Task/>}/>
             <Route path ="/contests/:id/problem/standings" element={<Standings/>}/>
-            <Route path = "/contests/:id/problem/submissions" element = {<Submissions/>}/>
+            <Route path = "/submissions/:problemId" element = {<Submissions/>}/>
             <Route path = "/enter" element = {<AuthRootComponent/>}/>
             <Route path = "/register" element = {<AuthRootComponent/>}/>
             <Route path="/edu" element = {<TrainersPage/>}/>
