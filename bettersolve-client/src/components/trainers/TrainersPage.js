@@ -27,8 +27,19 @@ const TrainersPage = () => {
   const handleModalClose = () => {
     setShowModal(false);
   };
-  async function test(e){
-    e.preventDefault()
+
+  useEffect(() => {
+    async function fetchOwnContests() {
+      let contests = await ContestService.handleOwnContest();
+      setOwnContests(contests)
+    }
+    if (a === true) {
+      fetchOwnContests();
+    }
+    setA(true)
+  }, [a]);
+
+  async function createContest(e){
     await SubmitContest.handleModalSubmit(contestData)
     window.location.reload(true)
   }

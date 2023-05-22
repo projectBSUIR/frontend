@@ -39,7 +39,7 @@ export const MakeAuthorizedRequest = async (endpoint, requestOptions, refreshed)
             return await MakeAuthorizedRequest(endpoint, requestOptions, true);
         } else {
             if (response.status === 401) {
-                window.location.href = "http://localhost:3000/enter";
+                //window.location.href = "http://localhost:3000/enter";
             }
         }
         return response;
