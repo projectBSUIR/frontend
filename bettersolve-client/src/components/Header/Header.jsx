@@ -1,5 +1,5 @@
 import React from "react";
-import "./HeadForm.css";
+import "./headForm.css";
 import style from "./styles/Name.module.css";
 import navigateStyle from "./styles/Navigate.module.css";
 import { NavLink } from 'react-router-dom';

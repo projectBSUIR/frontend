@@ -48,8 +48,6 @@ const Submissions = () =>{
         return elements
     }
 
-    //{"submissions":[{"id":19,"submit_time":"2023-05-22T01:37:31+03:00","verdict":{"memory":0,"status":"Pending","time":0},"problem_id":70,"user_id":10}]}
-
     return (
         <div  className={styles.MainPage}>
             <div className={styles.Content}>
