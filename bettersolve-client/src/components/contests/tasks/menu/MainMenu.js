@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useLocation, useParams } from 'react-router-dom';
 import "../Grid.css";
 import Active from "../Active.module.css"
+import TokenController from "../../../../controllers/TokenController";
+import { MakeAuthorizedRequest } from "../../../../API/RequestService";
 
 const Menu = (props) => {
     const location = useLocation();
@@ -52,17 +54,21 @@ const Menu = (props) => {
           });
         }
 
-        await fetch(`http://localhost:5000/contest/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (problemId !== undefined) {
-            props?.setProblemProperties(getPropertiesWithProblemId(data.problems, problemId))
-          }
-          setProblems(data.problems);
-        })
-        .catch((error) => {
-          console.error('Ошибка:', error);
-        });
+        let requestOptions = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': TokenController.getToken()
+          },
+          credentials: 'include'
+        };
+        let response = await MakeAuthorizedRequest(`contest/${id}`, requestOptions)
+        if (response.status === 200 && problemId !== undefined) {
+          props?.setProblemProperties(getPropertiesWithProblemId(response.data.problems, problemId))
+        }
+        if (response.status === 200) {
+          setProblems(response.data.problems)
+        }
       }
       handleData();
     }, [id, problemId])
