@@ -55,21 +55,16 @@ const Task = () => {
             
             <p className="headline">Пример</p>
             <table>
-                <thead>
                     <tr>
-                        <th>STDIN </th>
-                        <th>STDOUT </th>
+                        <td>STDIN </td>
+                        <td>STDOUT </td>
                     </tr>
-                </thead>
-                <tbody>
                     {properties?.sampleTests.map((sample, id) => (
                         <tr>
-                        <td><Latex><NewlineText text = {sample.input}/></Latex></td>
-                        <td><Latex><NewlineText text = {sample.output}/></Latex></td>
+                            <td><Latex><NewlineText text = {sample.input}/></Latex></td>
+                            <td><Latex><NewlineText text = {sample.output}/></Latex></td>
                         </tr>
                     ))}
-                    
-                </tbody>
             </table>
         
         <form method="post" enctype="multipart/form-data">
