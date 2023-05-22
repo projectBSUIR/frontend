@@ -39,6 +39,7 @@ const Task = () => {
                 Лимит памяти: {properties?.memoryLimit / 1024 / 1024} МБ
             </p>
             <p className="line"/>
+            <p> {properties?.legend}</p>
             <p className="headline">Входные данные</p>
             <p>{properties?.input}</p>
             
