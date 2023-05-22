@@ -31,7 +31,7 @@ const Submissions = () =>{
             <td>{submission.submit_time.toLocaleString() + ""}</td>
             <td>{TokenController.getUserNickname()}</td>
             <td>{submission.verdict.time + " ms"}</td>
-            <td>{submission.verdict.memory + " KB"}</td>
+            <td>{submission.verdict.memory / 1024 + " KB"}</td>
             <td>GNU C++20</td>
             <td>{submission.verdict.status}</td>
         </tr>
