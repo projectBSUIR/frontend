@@ -3,7 +3,7 @@ import Menu from "../menu/MainMenu";
 import "../Grid.css";
 import CodeInput from "./CodeTextArea"
 import 'katex/dist/katex.min.css';
-import { NavLink, useLocation, useParams } from "react-router-dom";
+import Latex from "../../../../controllers/Latex";
 
 
 
@@ -14,13 +14,21 @@ const Task = () => {
         setProperties(problem_properties)
     }
 
+    function NewlineText(props) {
+        const text = props.text;
+        const newText = text?.split('\n').map(str => <p>{str}</p>);
+        
+        return newText;
+      }
+      
+
     function showNotes() {
         if (!properties?.notes) {
             return <></>
         }
         return <>
                 <p className="headline">Примечания</p>
-                <p>{properties.notes}</p>
+                <Latex><NewlineText text = {properties.notes}/> </Latex>
                 <p className="line"/>
             </>
     }
@@ -35,17 +43,17 @@ const Task = () => {
             
             <h1 className="contestsName">{properties?.name}</h1>
             <p className="limits"> 
-                Лимит времени: {properties?.timeLimit} мс <br/> 
-                Лимит памяти: {properties?.memoryLimit / 1024 / 1024} МБ
+                <Latex>Лимит времени: {properties?.timeLimit} мс </Latex><br/> 
+                <Latex>Лимит памяти: {properties?.memoryLimit / 1024 / 1024} МБ </Latex>
             </p>
             <p className="line"/>
-            <p> {properties?.legend}</p>
+            <Latex> <NewlineText text = {properties?.legend}/></Latex>
             <p className="headline">Входные данные</p>
-            <p>{properties?.input}</p>
+            <Latex><NewlineText text = {properties?.input}/></Latex>
             
             <p className="line"/>
             <p className="headline">Выходные данные</p>
-            <p>{properties?.output}</p>
+            <Latex><NewlineText text = {properties?.output}/></Latex>
 
             <p className="line"/>
             {showNotes()}
@@ -61,8 +69,8 @@ const Task = () => {
                 <tbody>
                     {properties?.sampleTests.map((sample, id) => (
                         <tr>
-                        <td>{sample.input}</td>
-                        <td>{sample.output}</td>
+                        <td><Latex><NewlineText text = {sample.input}/></Latex></td>
+                        <td><Latex><NewlineText text = {sample.output}/></Latex></td>
                         </tr>
                     ))}
                 </tbody>
