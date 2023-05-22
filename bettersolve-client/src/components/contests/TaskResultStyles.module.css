@@ -19,12 +19,22 @@
     justify-content: space-between;
     font-size: 18px;
     font-weight: 500;
+    color: #000;
 }
 .tableSettings{
     margin-top: 15px;
     width: 100%;
     font-size: 14px;
+    border-top: 2px #E9E7EA solid;
+    border: 2px #E9E7EA solid;
 }
+
+.tableSettings tr
+{
+    border: 2px #E9E7EA solid;
+    color: 2px #E9E7EA solid;
+}
+
 .tableSettings tr:first-child
 {
     color: #9B939E;
@@ -39,4 +49,8 @@
 
 .Letter{
     width: 60px;
+}
+
+td{
+    border: 2px #E9E7EA solid;
 }

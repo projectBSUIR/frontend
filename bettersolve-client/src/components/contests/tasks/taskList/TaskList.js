@@ -17,7 +17,6 @@ const TaskList = () => {
   const [problems, setProblems] = useState([]);
 
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     async function handleProblems() {
