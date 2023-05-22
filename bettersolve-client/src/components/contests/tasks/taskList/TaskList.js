@@ -4,6 +4,7 @@ import Menu from "../menu/MainMenu";
 import "./TaskList.css";
 import ListComponent from "./ListComponent";
 import { useNavigate, useParams } from "react-router-dom";
+import { MakeRequest } from "../../../../API/RequestService";
 
 const TaskList = () => {
   let navigate = useNavigate(); 
@@ -19,15 +20,11 @@ const TaskList = () => {
   console.log(id);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/contest/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setProblems(data.problems);
-        console.log(setProblems);
-      })
-      .catch((error) => {
-        console.error('Ошибка:', error);
-      });
+    async function handleProblems() {
+      let response = await MakeRequest(`http://localhost:5000/contest/${id}`, {})
+      setProblems(response.data.problems)
+    }
+    handleProblems();
   }, [id]);
 
 

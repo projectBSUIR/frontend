@@ -12,7 +12,7 @@ const ListComponent = (props) => {
     return(
         <div>
             <div className="taskNameList">
-                {props.counter} {props.name }
+                {props.counter}. {props.task.name }
                 <button className="mysollution" onClick={routeChange}> Мои решения </button>
             </div>
             <p className="line"/>

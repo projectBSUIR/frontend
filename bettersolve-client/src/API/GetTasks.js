@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { MakeRequest } from './RequestService';
 
 const GetTask = () => {
   const [problems, setProblems] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000//contest/${id}') 
-      .then((response) => response.json())
-      .then((data) => {
-        setProblems(data.problems);
-      })
-      .catch((error) => {
-        console.error('Ошибка:', error);
-      });
+    async function handleProblems() {
+      let response = await MakeRequest('http://localhost:5000//contest/${id}', {})
+      console.log(response)
+      setProblems(response.data.problems)
+    }
+    handleProblems();
   }, []);
 
   return (
