@@ -1,39 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from '../TaskResultStyles.module.css';
-const solutions = [
-    {
-        num: 1,
-        date: new Date(),
-        UserName: "Kot_Jmot",
-        complexity: "А - Сложный вопрос",
-        compiler: ".Net v6",
-        solutionStatus: "Ошибка компиляции"
+import { useParams } from "react-router-dom";
+import { MakeAuthorizedRequest, MakeRequest } from "../../../API/RequestService";
+import TokenController from "../../../controllers/TokenController";
 
-    },
-    {
-        num: 2,
-        date: new Date(),
-        UserName: "VanVey25",
-        complexity: "А - Сложный вопрос",
-        compiler: "C++20",
-        solutionStatus: "Принято"
-
-    },
-]
-const elements = [];
-
-solutions.forEach((solution) => {
-    elements.push(
-    <tr>
-        <td>{solution.num}</td>
-        <td>{solution.date.toLocaleString() + ""}</td>
-        <td>{solution.UserName}</td>
-        <td>{solution.complexity}</td>
-        <td>{solution.compiler}</td>
-        <td>{solution.solutionStatus}</td>
-    </tr>);
-  });
 const Submissions = () =>{
+    const [submissions, setSubmissions] = useState();
+    const {problemId} = useParams();
+
+    useEffect(() => {
+        async function handleSubmissions() {
+            const requestOptions = {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': TokenController.getToken()
+                },
+                credentials: 'include'
+              };
+          let response = await MakeAuthorizedRequest(`submissions/${problemId}`, requestOptions)
+          
+          setSubmissions(response.data.submissions)
+        }
+        handleSubmissions();
+      }, [problemId]);
+
+    function makeSubmissionInfo(submission) {
+        return <tr>
+            <td>{submission.id}</td>
+            <td>{submission.submit_time.toLocaleString() + ""}</td>
+            <td>{TokenController.getUserNickname()}</td>
+            <td>{submission.verdict.time + " ms"}</td>
+            <td>{submission.verdict.memory / 1024 + " KB"}</td>
+            <td>GNU C++20</td>
+            <td>{submission.verdict.status}</td>
+        </tr>
+    }
+
+    function showSubmissions() {
+        if (!submissions) {
+            return <></>
+        }
+        const elements = []
+        submissions.map((submission => {
+            elements.push(makeSubmissionInfo(submission))
+        }))
+        return elements
+    }
+
+    //{"submissions":[{"id":19,"submit_time":"2023-05-22T01:37:31+03:00","verdict":{"memory":0,"status":"Pending","time":0},"problem_id":70,"user_id":10}]}
+
     return (
         <div  className={styles.MainPage}>
             <div className={styles.Content}>
@@ -45,11 +61,12 @@ const Submissions = () =>{
                         <td>№ Решения</td>
                         <td>Дата</td>
                         <td>Имя пользователя</td>
-                        <td>Задача</td>
+                        <td>Время</td>
+                        <td>Память</td>
                         <td>Компилятор</td>
                         <td>Вердикт</td>
                     </tr>
-                    {elements}
+                    {showSubmissions()}
                 </table>
             </div>
         </div>

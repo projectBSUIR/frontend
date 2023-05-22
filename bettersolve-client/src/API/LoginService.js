@@ -18,7 +18,7 @@ export default class LoginService
               credentials: 'include'
             };
 
-            const response = await MakeRequest('http://localhost:5000/login', requestOptions);
+            const response = await MakeRequest('login', requestOptions);
             if (response.status === 200) {
               const data = response.data;
               TokenController.setToken(data.access_token);
