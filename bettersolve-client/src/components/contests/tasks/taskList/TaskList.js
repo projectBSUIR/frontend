@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Menu from "../menu/MainMenu";
 import "./TaskList.css";
@@ -8,15 +7,14 @@ import { MakeRequest } from "../../../../API/RequestService";
 
 const TaskList = () => {
   let navigate = useNavigate(); 
+  const { id } = useParams();
 
   const routeChange = () => { 
-    let path = `/contests/1/problem/standings`; 
+    let path = `/contest/${id}/standings`; 
     navigate(path);
   }
 
   const [problems, setProblems] = useState([]);
-
-  const { id } = useParams();
 
   useEffect(() => {
     async function handleProblems() {
@@ -35,7 +33,7 @@ const TaskList = () => {
           <p className="taskHeader">Задачи:</p>
           {problems && problems.length > 0 ? (
             problems.map((problem, index) => (
-                <ListComponent key={problem.id} task={problem.properties} counter={String.fromCharCode(65 + index)} />
+                <ListComponent key={problem.id} problemId = {problem.id} task={problem.properties} counter={String.fromCharCode(65 + index)} />
             ))
             ) : (
             <p>Нет доступных задач.</p>
