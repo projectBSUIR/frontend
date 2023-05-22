@@ -29,10 +29,7 @@ const TaskList = () => {
 
   return (
     <div className="app-wrapper">
-      <Menu>
-        <div className="navigation + BackToTasks">
-          <NavLink to="/contests" className={ navData => navData.isActive ? "active" : ''}>   К соревнованиям </NavLink>
-        </div>
+      <Menu problems = {problems}>
       </Menu>
       <div className="info">
         <div className="taskListForm">

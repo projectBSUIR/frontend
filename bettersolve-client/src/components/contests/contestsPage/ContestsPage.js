@@ -18,7 +18,7 @@ const Contests = () => {
   }, []);
 
   const routeChange = (id) => {
-    let path = `/contest/${id}/problem`;
+    let path = `/contest/${id}`;
     navigate(path, { state: { contests } }); 
   };
 
