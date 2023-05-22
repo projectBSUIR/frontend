@@ -43,6 +43,7 @@
 
 .line{
     border: 1px solid #E6E4E7;
+    margin-bottom: 20px;
 }
 
 .BackToTasks{
@@ -51,9 +52,8 @@
 
 .navigation {
     margin-left: 3%;
-    margin-top: 30px;
-    padding-bottom: 30px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    color: #6B31B5;
 }
 
 .navigation a{
@@ -61,36 +61,10 @@
     text-decoration: none;
 }
 
-.active{
-    color: #6B31B5;
-}
-
 .limits{
     color: #9B939E;
 }
 
-table {
-    border-collapse: collapse;
-    border: 1px solid #9B939E;
-    width: 528px;
-    margin-bottom: 50px;
-}
-
-th {
-    border-right: 1px solid grey;
-    border-bottom: 1px solid grey;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 17px;
-
-    color: #727070;
-}
-
-td {
-    border-right: 1px solid grey;
-    border-left: 1px solid grey;
-    text-align: center;
-}
 
 textarea{
     width: 100%;

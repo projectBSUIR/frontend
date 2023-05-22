@@ -1,56 +1,71 @@
 import React, { useState } from "react";
 import Menu from "../menu/MainMenu";
 import "../Grid.css";
-import CodeInput from "./CodeTextArea"
-import 'katex/dist/katex.min.css';
-import { NavLink, useLocation, useParams } from "react-router-dom";
-
-
+import CodeInput from "./CodeTextArea";
+import MathJax from "react-mathjax2";
 
 const Task = () => {
-    const [properties, setProperties] = useState()
-    
-    function setProblemProperties(problem_properties) {
-        setProperties(problem_properties)
+  const [properties, setProperties] = useState();
+
+  function setProblemProperties(problem_properties) {
+    setProperties(problem_properties);
+  }
+
+  function showNotes() {
+    if (!properties?.notes) {
+      return <></>;
     }
+    return (
+      <>
+        <p className="headline">Примечания</p>
+        <MathJax.Context>
+          <div>{properties.notes}</div>
+        </MathJax.Context>
+        <p className="line" />
+      </>
+    );
+  }
 
-    function showNotes() {
-        if (!properties?.notes) {
-            return <></>
-        }
-        return <>
-                <p className="headline">Примечания</p>
-                <p>{properties.notes}</p>
-                <p className="line"/>
-            </>
-    }
-
-    return(
-        <div className = "app-wrapper">
-            <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
-            <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script> 
-            <link rel="stylesheet" type="text/css" href="/static/js/codemirror-5.62.0/lib/codemirror.css"></link>
-            <Menu setProblemProperties = {setProblemProperties}/>
-            <div  className="content"> 
-            
-            <h1 className="contestsName">{properties?.name}</h1>
-            <p className="limits"> 
-                Лимит времени: {properties?.timeLimit} мс <br/> 
-                Лимит памяти: {properties?.memoryLimit / 1024 / 1024} МБ
-            </p>
-            <p className="line"/>
-            <p> {properties?.legend}</p>
-            <p className="headline">Входные данные</p>
-            <p>{properties?.input}</p>
-            
-            <p className="line"/>
-            <p className="headline">Выходные данные</p>
-            <p>{properties?.output}</p>
-
-            <p className="line"/>
-            {showNotes()}
-            
-            <p className="headline">Пример</p>
+  return (
+    <div className="app-wrapper">
+      <script
+        language="javascript"
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"
+      ></script>
+      <script
+        language="javascript"
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"
+      ></script>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="/static/js/codemirror-5.62.0/lib/codemirror.css"
+      ></link>
+      <Menu setProblemProperties={setProblemProperties} />
+      <div className="content">
+        <h1 className="contestsName">{properties?.name}</h1>
+        <p className="limits">
+          Лимит времени: {properties?.timeLimit} мс <br />
+          Лимит памяти: {properties?.memoryLimit / 1024 / 1024} МБ
+        </p>
+        <p className="line" />
+        <MathJax.Context>
+          <div>{properties?.legend}</div>
+        </MathJax.Context>
+        <p className="headline">Входные данные</p>
+        <MathJax.Context>
+          <div>{properties?.input}</div>
+        </MathJax.Context>
+        <p className="line" />
+        <p className="headline">Выходные данные</p>
+        <MathJax.Context>
+          <div>{properties?.output}</div>
+        </MathJax.Context>
+        <p className="line" />
+        {showNotes()}
+        <p className="headline">Пример</p>
             <table>
                 <thead>
                     <tr>
@@ -65,6 +80,7 @@ const Task = () => {
                         <td>{sample.output}</td>
                         </tr>
                     ))}
+                    
                 </tbody>
             </table>
         
