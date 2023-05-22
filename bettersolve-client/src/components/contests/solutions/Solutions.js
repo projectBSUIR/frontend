@@ -29,7 +29,7 @@ const Submissions = () =>{
         return <tr>
             <td>{submission.id}</td>
             <td>{submission.submit_time.toLocaleString() + ""}</td>
-            <td>{TokenController.getUserNickname}</td>
+            <td>{TokenController.getUserNickname()}</td>
             <td>{submission.verdict.time + " ms"}</td>
             <td>{submission.verdict.memory + " KB"}</td>
             <td>GNU C++20</td>
