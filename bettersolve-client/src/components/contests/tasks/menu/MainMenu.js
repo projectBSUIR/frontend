@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom';
 import { useLocation, useParams } from 'react-router-dom';
+import "../Grid.css";
+import Active from "../Active.module.css"
 
 const Menu = (props) => {
     const location = useLocation();
@@ -14,12 +16,12 @@ const Menu = (props) => {
       }
       let list = []
       problems.map((problem, index) => (
-        list.push(<div key={index}>
+        list.push(<div key={index} className="navigation">
           <NavLink
             to={{
               pathname: `/contest/${id}/problem/${problem.id}`,
               userState: {problem_properties: problem.properties}}}
-            className={navData => navData.isActive ? "active" : ''}
+              className={navData => navData.isActive ? Active.active : ''}
           >
             {String.fromCharCode(65 + index)}. {problem.properties.name}
           </NavLink>
@@ -74,7 +76,7 @@ const Menu = (props) => {
         <p className="headline">{contests && contests[id-1]?.name}</p>
         <p className="status">Статус контеста</p>
         <p className="line" />
-        <div className="navigation">
+        <div className="navigation" >
           {showProblemNames()}
         </div>
       </div>

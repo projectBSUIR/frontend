@@ -5,14 +5,12 @@ import CodeInput from "./CodeTextArea"
 import 'katex/dist/katex.min.css';
 import Latex from "../../../../controllers/Latex";
 
-
-
 const Task = () => {
-    const [properties, setProperties] = useState()
-    
-    function setProblemProperties(problem_properties) {
-        setProperties(problem_properties)
-    }
+  const [properties, setProperties] = useState();
+
+  function setProblemProperties(problem_properties) {
+    setProperties(problem_properties);
+  }
 
     function NewlineText(props) {
         const text = props.text;
@@ -35,9 +33,6 @@ const Task = () => {
 
     return(
         <div className = "app-wrapper">
-            <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
-            <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script> 
-            <link rel="stylesheet" type="text/css" href="/static/js/codemirror-5.62.0/lib/codemirror.css"></link>
             <Menu setProblemProperties = {setProblemProperties}/>
             <div  className="content"> 
             
@@ -60,35 +55,31 @@ const Task = () => {
             
             <p className="headline">Пример</p>
             <table>
-                <thead>
                     <tr>
-                        <th>STDIN </th>
-                        <th>STDOUT </th>
+                        <td>STDIN </td>
+                        <td>STDOUT </td>
                     </tr>
-                </thead>
-                <tbody>
                     {properties?.sampleTests.map((sample, id) => (
                         <tr>
-                        <td><Latex><NewlineText text = {sample.input}/></Latex></td>
-                        <td><Latex><NewlineText text = {sample.output}/></Latex></td>
+                            <td><Latex><NewlineText text = {sample.input}/></Latex></td>
+                            <td><Latex><NewlineText text = {sample.output}/></Latex></td>
                         </tr>
                     ))}
-                </tbody>
             </table>
         
-        <CodeInput/>
         <form method="post" enctype="multipart/form-data">
-            <label class="input-file">
-                <input type="file" name="file"/>		
-                <span>Выберите файл</span>
-            </label>
-            <label className="compiler">Компилятор: </label>
-            <select>
-            <option value="Python">Python</option>
-            <option value="C++17">C++17</option>
-            <option selected value="C#">C#</option>
-            <option value="Java">Java</option>
-            </select>
+            <div style={{display:"flex", justifyContent:"left"}}>
+                <input type="file" class="input-file" name="file" placeholder="Выберите файл" onchange="displayFileName(event)"/>
+                <div style={{marginLeft:"15px;"}}>
+                    <label className="compiler">Компилятор: </label>
+                    <select>
+                        <option value="Python">Python</option>
+                        <option value="C++17">C++17</option>
+                        <option selected value="C#">C#</option>
+                        <option value="Java">Java</option>
+                    </select>
+                </div>
+            </div>
             </form>
             <button className="sendButton"  type='submit' variant="contained">
                         <p className="buttonText">Отправить </p>

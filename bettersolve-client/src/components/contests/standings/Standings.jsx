@@ -84,7 +84,6 @@ const Standings = () => {
           <input placeholder="Поиск" className={styles.SearchInput} />
         </div>
         <table className={`${styles.tableSettings} ${tableStyles.worldResTable} ${tableStyles.tasks}`}>
-          <thead>
             <tr>
               <th>№</th>
               <th>Имя пользователя</th>
@@ -92,10 +91,7 @@ const Standings = () => {
               <th>Штраф</th>
               {showCounters()}
             </tr>
-          </thead>
-          <tbody>
             {showStandings()}
-          </tbody>
         </table>
       </div>
     </div>
