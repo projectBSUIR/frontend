@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom';
 import { useLocation, useParams } from 'react-router-dom';
 
-const Menu = () => {
+const Menu = (props) => {
     const location = useLocation();
     const [contests, setContests] = useState()
     const [problems, setProblems] = useState()
-    console.log(location)
-    const { id } = useParams();
+    const { id, problemId } = useParams();
 
     function showProblemNames() {
       if (!problems) {
         return <></>
       }
       let list = []
-      console.log(problems)
       problems.map((problem, index) => (
         list.push(<div key={index}>
           <NavLink
-            to={`/contest/${id}/problem/${index + 1}`}
+            to={{
+              pathname: `/contest/${id}/problem/${problem.id}`,
+              userState: {problem_properties: problem.properties}}}
             className={navData => navData.isActive ? "active" : ''}
           >
             {String.fromCharCode(65 + index)}. {problem.properties.name}
@@ -28,27 +28,42 @@ const Menu = () => {
       return list
     }
 
+    function getPropertiesWithProblemId(problems, problemId) {
+      for (let i = 0; i < problems.length; i++) {
+        if (problems[i].id === parseInt(problemId, 10)) {
+          return problems[i].properties
+        }
+      }
+      return 11
+    }
+
     useEffect(() => {
-      if (!contests) {
-          fetch('http://localhost:5000/contests')
+      let handleData = async () => {
+        if (!contests) {
+          await fetch('http://localhost:5000/contests')
+          .then((response) => response.json())
+          .then((data) => {
+            setContests(data.contests);
+          })
+          .catch((error) => {
+            console.error('Ошибка:', error);
+          });
+        }
+
+        await fetch(`http://localhost:5000/contest/${id}`)
         .then((response) => response.json())
         .then((data) => {
-          setContests(data.contests);
+          if (problemId !== undefined) {
+            props?.setProblemProperties(getPropertiesWithProblemId(data.problems, problemId))
+          }
+          setProblems(data.problems);
         })
         .catch((error) => {
           console.error('Ошибка:', error);
         });
       }
-
-      fetch(`http://localhost:5000/contest/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setProblems(data.problems);
-      })
-      .catch((error) => {
-        console.error('Ошибка:', error);
-      });
-    }, [id])
+      handleData();
+    }, [location])
     
     return (
       <div className='menu'>

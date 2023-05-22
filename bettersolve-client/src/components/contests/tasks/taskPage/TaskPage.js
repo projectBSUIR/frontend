@@ -1,39 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import Menu from "../menu/MainMenu";
 import "../Grid.css";
 import CodeInput from "./CodeTextArea"
 import 'katex/dist/katex.min.css';
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 
 
 
 const Task = () => {
+    const [properties, setProperties] = useState()
+    
+    function setProblemProperties(problem_properties) {
+        setProperties(problem_properties)
+    }
+
+    function showNotes() {
+        if (!properties?.notes) {
+            return <></>
+        }
+        return <>
+                <p className="headline">Примечания</p>
+                <p>{properties.notes}</p>
+                <p className="line"/>
+            </>
+    }
+
     return(
         <div className = "app-wrapper">
             <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
             <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script> 
             <link rel="stylesheet" type="text/css" href="/static/js/codemirror-5.62.0/lib/codemirror.css"></link>
-            <Menu message = "hi" >
-            </Menu>
+            <Menu setProblemProperties = {setProblemProperties}/>
             <div  className="content"> 
             
-            <h1 className="contestsName">Название</h1>
-            <p className="limits"> Лимит времени: 1000 мс <br/> 
-                Лимит памяти: 256 мб
+            <h1 className="contestsName">{properties.name}</h1>
+            <p className="limits"> 
+                Лимит времени: {properties.timeLimit} мс <br/> 
+                Лимит памяти: {properties.memoryLimit / 1024 / 1024} МБ
             </p>
             <p className="line"/>
             <p className="headline">Входные данные</p>
-            <p>В первой строке входных данных записано число</p>
+            <p>{properties.input}</p>
             
             <p className="line"/>
             <p className="headline">Выходные данные</p>
-            <p>В единственной строке выведите число m - номер следующего парня Маши, или ’: (’ - если его не будет(выводить без кавычек)</p>
+            <p>{properties.output}</p>
 
             <p className="line"/>
-            <p className="headline">Примечания</p>
-            <p>...</p>
+            {showNotes()}
             
-            <p className="line"/>
             <p className="headline">Пример</p>
             <table>
                 <thead>
@@ -43,14 +58,12 @@ const Task = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>4</td>
-                    <td>:(</td>
-                    </tr>
-                    <tr>
-                    <td>15</td>
-                    <td>51</td>
-                    </tr>
+                    {properties.sampleTests.map((sample, id) => (
+                        <tr>
+                        <td>{sample.input}</td>
+                        <td>{sample.output}</td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         

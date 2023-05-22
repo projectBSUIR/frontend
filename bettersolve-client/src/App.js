@@ -20,7 +20,7 @@ function App() {
             <Route path = "/" element = {<Home/>}/>
             <Route path = "/contests" element = {<Contests/>}/>
             <Route path = "/contest/:id" element = {<TaskList/>}/>
-            <Route path = "/contest/:id/problem/1" element = {<Task/>}/>
+            <Route path = "/contest/:id/problem/:problemId" element = {<Task/>}/>
             <Route path ="/contest/:id/standings" element={<Standings/>}/>
             <Route path = "/submissions/:problemId" element = {<Submissions/>}/>
             <Route path = "/enter" element = {<AuthRootComponent/>}/>
