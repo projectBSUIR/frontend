@@ -29,6 +29,7 @@ const Menu = (props) => {
     }
 
     function getPropertiesWithProblemId(problems, problemId) {
+      console.log(problems)
       for (let i = 0; i < problems.length; i++) {
         if (problems[i].id === parseInt(problemId, 10)) {
           return problems[i].properties
@@ -63,7 +64,7 @@ const Menu = (props) => {
         });
       }
       handleData();
-    }, [location])
+    }, [id, problemId])
     
     return (
       <div className='menu'>

@@ -29,8 +29,7 @@ const TaskList = () => {
 
   return (
     <div className="app-wrapper">
-      <Menu>
-      </Menu>
+      <Menu/>
       <div className="info">
         <div className="taskListForm">
           <p className="taskHeader">Задачи:</p>

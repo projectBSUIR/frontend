@@ -33,18 +33,18 @@ const Task = () => {
             <Menu setProblemProperties = {setProblemProperties}/>
             <div  className="content"> 
             
-            <h1 className="contestsName">{properties.name}</h1>
+            <h1 className="contestsName">{properties?.name}</h1>
             <p className="limits"> 
-                Лимит времени: {properties.timeLimit} мс <br/> 
-                Лимит памяти: {properties.memoryLimit / 1024 / 1024} МБ
+                Лимит времени: {properties?.timeLimit} мс <br/> 
+                Лимит памяти: {properties?.memoryLimit / 1024 / 1024} МБ
             </p>
             <p className="line"/>
             <p className="headline">Входные данные</p>
-            <p>{properties.input}</p>
+            <p>{properties?.input}</p>
             
             <p className="line"/>
             <p className="headline">Выходные данные</p>
-            <p>{properties.output}</p>
+            <p>{properties?.output}</p>
 
             <p className="line"/>
             {showNotes()}
@@ -58,7 +58,7 @@ const Task = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {properties.sampleTests.map((sample, id) => (
+                    {properties?.sampleTests.map((sample, id) => (
                         <tr>
                         <td>{sample.input}</td>
                         <td>{sample.output}</td>
