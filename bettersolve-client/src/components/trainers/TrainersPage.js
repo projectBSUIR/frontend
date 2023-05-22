@@ -42,7 +42,7 @@ const TrainersPage = () => {
   async function createContest(e){
     console.log(contestData)
     await SubmitContest.handleModalSubmit(contestData)
-    //window.location.reload(true)
+    window.location.reload(true)
   }
 
   function showOwnContests() {
