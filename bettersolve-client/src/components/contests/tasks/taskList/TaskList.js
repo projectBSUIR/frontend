@@ -20,7 +20,7 @@ const TaskList = () => {
 
   useEffect(() => {
     async function handleProblems() {
-      let response = await MakeRequest(`http://localhost:5000/contest/${id}`, {})
+      let response = await MakeRequest(`contest/${id}`, {})
       setProblems(response.data.problems)
     }
     handleProblems();
