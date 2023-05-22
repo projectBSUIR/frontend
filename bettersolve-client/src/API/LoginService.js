@@ -1,9 +1,10 @@
+import TokenController from "../controllers/TokenController";
+import {MakeRequest} from "./RequestService";
+
 export default class LoginService
 {
     static async login(values){
-        if(localStorage.getItem('ACCESS')){
-            localStorage.removeItem('ACCESS')
-        }
+        TokenController.extractToken();
         try {
             let code = await getSHA256Hash(values.password);
             let loginData = { password: code, login: values.login };
@@ -16,15 +17,15 @@ export default class LoginService
               body: JSON.stringify(loginData),
               credentials: 'include'
             };
-      
-            const response = await fetch('http://localhost:5000/login', requestOptions);
-            if (response.ok) {
-              const data = await response.json();
-              console.log(data);
+
+            const response = await MakeRequest('http://localhost:5000/login', requestOptions);
+            if (response.status === 200) {
+              const data = response.data;
+              TokenController.setToken(data.access_token);
               localStorage.setItem('ACCESS', data.access_token);
-        } else {
-            throw new Error("Request failed with status " + response.status);
-        }
+            } else {
+                throw new Error("Request failed with status " + response.status);
+            }
         } catch (error) {
             console.error("Error:", error);
         }

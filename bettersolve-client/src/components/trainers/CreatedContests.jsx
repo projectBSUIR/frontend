@@ -3,7 +3,7 @@ import "../contests/tasks/taskList/TaskList.css";
 import { useNavigate } from "react-router-dom";
 import "./styles/Button.css";
 import "./styles/ModalContest.css";
-
+import ContestService from "../../API/ContestService";
 
 const CreatedContests = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,9 +21,9 @@ const CreatedContests = (props) => {
     setFile(selectedFile);
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     // Handle the file upload logic here
-    console.log("Uploading file:", file.name);
+    await ContestService.addProblem(file, props.contestId)  
     setModalVisible(false);
   };
 
@@ -35,7 +35,7 @@ const CreatedContests = (props) => {
   return (
     <div>
       <div className="taskNameList">
-        <span className="contestHeader">{props.contests}</span>
+        <span className="contestHeader">{props.contestName}</span>
         <button className="mysollution" onClick={() => setModalVisible(true)}>
           Добавить задачу
         </button>

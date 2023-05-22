@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreatedContests from "./CreatedContests";
 import "../contests/tasks/taskList/TaskList.css";
 import "./styles/ModalContest.css";
+import ContestService from "../../API/ContestService";
 import SubmitContest from "../../API/CreateContest";
 
 const TrainersPage = () => {
@@ -11,6 +12,8 @@ const TrainersPage = () => {
     start_time: "",
     duration: "",
   });
+  const [ownContests, setOwnContests] = useState();
+  const [a, setA] = useState(false)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -24,18 +27,26 @@ const TrainersPage = () => {
   const handleModalClose = () => {
     setShowModal(false);
   };
-  async function test(){
+  async function test(e){
+    e.preventDefault()
     await SubmitContest.handleModalSubmit(contestData)
+    window.location.reload(true)
+  }
+
+  function showOwnContests() {
+    if (!ownContests) {
+      return <></>;
+    }
+    return ownContests.map(contest => 
+      <CreatedContests contestName={contest.name} contestId={contest.id}/>
+    )
   }
 
   return (
     <div style={{ width: "100%" }}>
       <div className={"taskListForm"}>
         <h1 className="taskHeader"> Созданные соревнования: </h1>
-        <CreatedContests contests="Название контеста" />
-        <CreatedContests contests={contestData.name} />
-        <CreatedContests contests="8 яблок" />
-        <CreatedContests contests="Мы делили апельсин" />
+        {showOwnContests()}
         <button className="darkButton" onClick={handleModalOpen}>
           Создать контест
         </button>
@@ -74,7 +85,7 @@ const TrainersPage = () => {
                     onChange={handleInputChange}
                   />
                 </label>
-                <button type="button" onClick={test}>
+                <button type="button" onClick={createContest}>
                   Создать
                 </button>
               </form>
