@@ -50,4 +50,27 @@ export default class ContestService {
       //window.location.href = "http://localhost:3000/enter";
     }
   }
+  static async SubmitSolution(solutionInfo) {
+    const token = TokenController.getToken();
+
+    console.log(solutionInfo.solution)
+    const data = new FormData();
+    data.append("Solution", solutionInfo.solution)
+    data.append("ContestId", solutionInfo.contestId)
+    data.append("ProblemId", solutionInfo.problemId)
+    let requestOptions = {
+      method: 'POST',
+      headers: {
+        'Authorization': token
+      },
+      body: data,
+      credentials: 'include'
+    };
+    let response = await MakeAuthorizedRequest("submit", requestOptions)
+    if (response.status === 200) {
+      console.log(response.data)
+    } else {
+      //window.location.href = "http://localhost:3000/enter";
+    }
+  }
 }
