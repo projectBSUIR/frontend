@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Menu from "../menu/MainMenu";
 import "../Grid.css";
-import CodeInput from "./CodeTextArea";
-import MathJax from "react-mathjax2";
+import CodeInput from "./CodeTextArea"
+import 'katex/dist/katex.min.css';
+import Latex from "../../../../controllers/Latex";
 
 const Task = () => {
   const [properties, setProperties] = useState();
@@ -11,61 +12,51 @@ const Task = () => {
     setProperties(problem_properties);
   }
 
-  function showNotes() {
-    if (!properties?.notes) {
-      return <></>;
-    }
-    return (
-      <>
-        <p className="headline">Примечания</p>
-        <MathJax.Context>
-          <div>{properties.notes}</div>
-        </MathJax.Context>
-        <p className="line" />
-      </>
-    );
-  }
+    function NewlineText(props) {
+        const text = props.text;
+        const newText = text?.split('\n').map(str => <p>{str}</p>);
+        
+        return newText;
+      }
+      
 
-  return (
-    <div className="app-wrapper">
-      <script
-        language="javascript"
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"
-      ></script>
-      <script
-        language="javascript"
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"
-      ></script>
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="/static/js/codemirror-5.62.0/lib/codemirror.css"
-      ></link>
-      <Menu setProblemProperties={setProblemProperties} />
-      <div className="content">
-        <h1 className="contestsName">{properties?.name}</h1>
-        <p className="limits">
-          Лимит времени: {properties?.timeLimit} мс <br />
-          Лимит памяти: {properties?.memoryLimit / 1024 / 1024} МБ
-        </p>
-        <p className="line" />
-        <MathJax.Context>
-          <div>{properties?.legend}</div>
-        </MathJax.Context>
-        <p className="headline">Входные данные</p>
-        <MathJax.Context>
-          <div>{properties?.input}</div>
-        </MathJax.Context>
-        <p className="line" />
-        <p className="headline">Выходные данные</p>
-        <MathJax.Context>
-          <div>{properties?.output}</div>
-        </MathJax.Context>
-        <p className="line" />
-        {showNotes()}
-        <p className="headline">Пример</p>
+    function showNotes() {
+        if (!properties?.notes) {
+            return <></>
+        }
+        return <>
+                <p className="headline">Примечания</p>
+                <Latex><NewlineText text = {properties.notes}/> </Latex>
+                <p className="line"/>
+            </>
+    }
+
+    return(
+        <div className = "app-wrapper">
+            <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+            <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script> 
+            <link rel="stylesheet" type="text/css" href="/static/js/codemirror-5.62.0/lib/codemirror.css"></link>
+            <Menu setProblemProperties = {setProblemProperties}/>
+            <div  className="content"> 
+            
+            <h1 className="contestsName">{properties?.name}</h1>
+            <p className="limits"> 
+                <Latex>Лимит времени: {properties?.timeLimit} мс </Latex><br/> 
+                <Latex>Лимит памяти: {properties?.memoryLimit / 1024 / 1024} МБ </Latex>
+            </p>
+            <p className="line"/>
+            <Latex> <NewlineText text = {properties?.legend}/></Latex>
+            <p className="headline">Входные данные</p>
+            <Latex><NewlineText text = {properties?.input}/></Latex>
+            
+            <p className="line"/>
+            <p className="headline">Выходные данные</p>
+            <Latex><NewlineText text = {properties?.output}/></Latex>
+
+            <p className="line"/>
+            {showNotes()}
+            
+            <p className="headline">Пример</p>
             <table>
                 <thead>
                     <tr>
@@ -76,8 +67,8 @@ const Task = () => {
                 <tbody>
                     {properties?.sampleTests.map((sample, id) => (
                         <tr>
-                        <td>{sample.input}</td>
-                        <td>{sample.output}</td>
+                        <td><Latex><NewlineText text = {sample.input}/></Latex></td>
+                        <td><Latex><NewlineText text = {sample.output}/></Latex></td>
                         </tr>
                     ))}
                     
