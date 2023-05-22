@@ -19,9 +19,9 @@ function App() {
        <Routes>
             <Route path = "/" element = {<Home/>}/>
             <Route path = "/contests" element = {<Contests/>}/>
-            <Route path = "/contests/:id/problem" element = {<TaskList/>}/>
-            <Route path = "/contests/:id/problem/1" element = {<Task/>}/>
-            <Route path ="/contests/:id/problem/standings" element={<Standings/>}/>
+            <Route path = "/contest/:id/problem" element = {<TaskList/>}/>
+            <Route path = "/contest/:id/problem/1" element = {<Task/>}/>
+            <Route path ="/contest/:id/standings" element={<Standings/>}/>
             <Route path = "/submissions/:problemId" element = {<Submissions/>}/>
             <Route path = "/enter" element = {<AuthRootComponent/>}/>
             <Route path = "/register" element = {<AuthRootComponent/>}/>
