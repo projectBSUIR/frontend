@@ -24,14 +24,17 @@ const Contests = () => {
 
   return (
     <div className="mainForm">
-      {contests.map((contest) => (
-        <ContestsComponent
-          key={contest.id}
-          contest={contest.name}
-          date={contest.start_time}
-          onClick={() => routeChange(contest.id)}
-        />
-      ))}
+      {contests.map((contest) => {
+        const transformedStartTime = new Date(contest.start_time).toLocaleString();
+        return (
+          <ContestsComponent
+            key={contest.id}
+            contest={contest.name}
+            date={transformedStartTime}
+            onClick={() => routeChange(contest.id)}
+          />
+        );
+      })}
     </div>
   );
 };

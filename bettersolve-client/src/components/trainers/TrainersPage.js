@@ -88,6 +88,15 @@ const TrainersPage = () => {
                   />
                 </label>
                 <label>
+                  Время начала:
+                  <input className="field" 
+                    type="time"
+                    name="start_time"
+                    value={contestData.start_time}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <label>
                   Длительность:
                   <input className="field" 
                     type="time"
