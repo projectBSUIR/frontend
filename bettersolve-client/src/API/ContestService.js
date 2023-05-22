@@ -45,7 +45,7 @@ export default class ContestService {
     };
     let response = await MakeAuthorizedRequest("addProblem", requestOptions)
     if (response.status === 200) {
-      console.log(response.data)
+      //console.log(response.data)
     } else {
       //window.location.href = "http://localhost:3000/enter";
     }
@@ -68,7 +68,7 @@ export default class ContestService {
     };
     let response = await MakeAuthorizedRequest("submit", requestOptions)
     if (response.status === 200) {
-      console.log(response.data)
+      //console.log(response.data)
     } else {
       //window.location.href = "http://localhost:3000/enter";
     }

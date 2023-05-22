@@ -29,7 +29,7 @@ export const MakeRequest = async (endpoint, requestOptions) => {
 }
 
 export const MakeAuthorizedRequest = async (endpoint, requestOptions, refreshed) => {
-    console.log(endpoint, requestOptions)
+    //console.log(endpoint, requestOptions)
     let response = await MakeRequest(endpoint, requestOptions);
     if (response.status === 401 && !refreshed) {
         let response = await RefreshService.refresh();
