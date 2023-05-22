@@ -7,7 +7,7 @@ export default class SubmitContest {
     const contestDataInt = {
       ...contestData,
       duration: Number(hours) * 60 * 60 + Number(minutes) * 60,
-      start_time: new Date().toISOString()
+      start_time: new Date(contestData.start_time).toISOString()
     };
 
     const token = TokenController.getToken();

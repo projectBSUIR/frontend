@@ -3,7 +3,8 @@ import Menu from "../menu/MainMenu";
 import "./TaskList.css";
 import ListComponent from "./ListComponent";
 import { useNavigate, useParams } from "react-router-dom";
-import { MakeRequest } from "../../../../API/RequestService";
+import { MakeAuthorizedRequest, MakeRequest } from "../../../../API/RequestService";
+import TokenController from "../../../../controllers/TokenController";
 
 const TaskList = () => {
   let navigate = useNavigate(); 
@@ -18,10 +19,24 @@ const TaskList = () => {
 
   useEffect(() => {
     async function handleProblems() {
-      let response = await MakeRequest(`contest/${id}`, {})
-      setProblems(response.data.problems)
+      let requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': TokenController.getToken()
+        },
+        credentials: 'include'
+      };
+      let response = await MakeAuthorizedRequest(`contest/${id}`, requestOptions)
+      if (response.status == 403 || (response.status === 500 && response.data.message === "Token is expired")) {
+        navigate("/contests")
+      } else {
+        setProblems(response.data.problems)
+      }
     }
-    handleProblems();
+    if (id !== undefined) {
+      handleProblems();
+    }
   }, [id]);
 
 
