@@ -49,6 +49,7 @@ const Standings = () => {
              </tr>
     }
     const rows = []
+    data.sort((itemA, itemB) => itemA.contest_result > itemB.contest_result ? 1 : -1)
     data.map((item, rowIndex) => (
       rows.push(<tr key={item.id}>
         <td>{rowIndex + 1}</td>

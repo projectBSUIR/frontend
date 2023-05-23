@@ -14,7 +14,7 @@ body {
     justify-content: center;
     background-color: #2B233B;
     height: 100vh;
-    color: #FFFFFF;
+    color: #2B233B;
 }
 button{
     font-family: 'Montserrat';
@@ -55,6 +55,21 @@ button:hover{
     width: auto;
     height: auto;
     padding-bottom: 5%;
+}
+
+.neMainForm{
+    top: -5.05%;
+    background: #ffffff;
+    border-radius: 5px;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-top: 1%;
+}
+
+img{
+    height: 200px;
+    width: 200px;
+    float:right;
 }
 
 table {
