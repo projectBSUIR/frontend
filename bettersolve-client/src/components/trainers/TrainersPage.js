@@ -17,7 +17,8 @@ const TrainersPage = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setContestData({ ...contestData, [name]: value });
+    if( value!="")
+      setContestData({ ...contestData, [name]: value });
   };
 
   const handleModalOpen = () => {
@@ -82,16 +83,7 @@ const TrainersPage = () => {
                 <label>
                   Дата начала:
                   <input className="field" 
-                    type="date"
-                    name="start_time"
-                    value={contestData.start_time}
-                    onChange={handleInputChange}
-                  />
-                </label>
-                <label>
-                  Время начала:
-                  <input className="field" 
-                    type="time"
+                    type="datetime-local"
                     name="start_time"
                     value={contestData.start_time}
                     onChange={handleInputChange}
