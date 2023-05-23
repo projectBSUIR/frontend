@@ -91,10 +91,7 @@ const Task = () => {
                 <div style={{marginLeft:"15px;"}}>
                     <label className="compiler">Компилятор: </label>
                     <select>
-                        <option value="Python">Python</option>
-                        <option value="C++17">C++17</option>
-                        <option selected value="C#">C#</option>
-                        <option value="Java">Java</option>
+                        <option value="C++17">GNU C++20</option>
                     </select>
                 </div>
             </div>
